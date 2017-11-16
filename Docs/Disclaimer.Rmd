@@ -10,13 +10,29 @@ at [Forest Sciences Centre of Catalonia (CTFC)](http://www.ctfc.cat),
 in collaboration with the
 [Center for Ecological Research and Forestry Applications (CREAF)](http://www.creaf.cat/):
 
-  + *Idea and conceptual design*: Miquel de Cáceres (CTFC-CEMFOR/CREAF), Víctor Granda (CTFC-CEMFOR) & Antoine Cabon (CTFC-CEMFOR/CREAF).
+  + *Idea and conceptual design*: Miquel de Cáceres (CTFC-CEMFOR/CREAF), Víctor Granda (CTFC-CEMFOR), Antoine Cabon (CTFC-CEMFOR/CREAF) & Jordi Martínez Vilalta (UAB/CREAF)
   
   + *Package development*: Miquel De Cáceres (CTFC-CEMFOR/CREAF), Antoine Cabon (CTFC-CEMFOR/CREAF) & Víctor Granda (CTFC-CEMFOR).
   
   + *User interface*: Víctor Granda (CTFC-CEMFOR).
   
   + *Contact*: Miquel De Cáceres (miquelcaceres@gmail.com)
+
+---
+
+## Scientific advisory board
+
++ Jordi Martínez Vilalta (UAB/CREAF)
++ Maurizio Mencuccini (ICREA)
++ Lluís Coll (CTFC-CEMFOR/CREAF)
++ Juli G. Pausas (CIDE-CSIC)
++ Pere Casals (CTFC-CEMFOR)
++ Lluís Brotons (CTFC-CEMFOR/CREAF/CSIC)
++ Pilar Llorens (IDAEA-CSIC)
++ Rafael Poyatos (CREAF)
++ Albert Álvarez (CREAF)
++ Jordi Vayreda (CREAF)
++ Mario Beltrán (AGS-CTFC)
 
 ---
 
