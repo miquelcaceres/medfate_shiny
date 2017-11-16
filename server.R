@@ -257,4 +257,45 @@ function(input, output, session) {
     }
   )
   
+  # Validation ####
+  
+  # swc_plot
+  output$val_swc_plot <- renderPlot({
+    swc_table_raw %>%
+      dplyr::rename(
+        Rsq_Granier = R_sq_simple,
+        Rsq_Sperry = R_sq_complex,
+        Rsq_both = R_sq_both) %>%
+      gather(Statistic, Value, -Site, -Layer) %>%
+      tidyr::separate(Statistic, c('Statistic', 'Model')) %>%
+      dplyr::mutate(Model = stringr::str_replace(Model, 'both', 'versus'),
+                    Model = stringr::str_replace(Model, 'simple', 'Granier'),
+                    Model = stringr::str_replace(Model, 'complex', 'Sperry')) %>%
+      ggplot(aes(x = Model, y = Value)) +
+      geom_boxplot() +
+      facet_wrap(~Statistic, ncol = 3, scales = 'free') +
+      labs(x = '', y = '') +
+      theme_medfate()
+  })
+  
+  # E plot
+  output$val_e_plot <- renderPlot({
+    etot_table_raw %>%
+      dplyr::rename(
+        Eplanttot_Rsq_simple = Eplanttot_r_sq_simple,
+        Eplanttot_Rsq_complex = Eplanttot_r_sq_complex,
+        Eplanttot_Rsq_both = Eplanttot_r_sq_both) %>%
+      gather(Statistic, Value, -Site) %>%
+      tidyr::separate(Statistic, c('Var', 'Statistic', 'Model')) %>%
+      dplyr::select(Site, Statistic, Model, Value) %>%
+      dplyr::mutate(Statistic = stringr::str_replace(Statistic, 'bias', 'Bias')) %>%
+      dplyr::mutate(Model = stringr::str_replace(Model, 'both', 'versus'),
+                    Model = stringr::str_replace(Model, 'simple', 'Granier'),
+                    Model = stringr::str_replace(Model, 'complex', 'Sperry')) %>%
+      ggplot(aes(x = Model, y = Value)) +
+      geom_boxplot() +
+      facet_wrap(~Statistic, ncol = 3, scales = 'free') +
+      labs(x = '', y = '') +
+      theme_medfate()
+  })
 }

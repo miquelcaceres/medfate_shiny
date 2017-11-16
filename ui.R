@@ -283,7 +283,27 @@ navbarPage(
   
   # Validation tab ####
   tabPanel(
-    title = 'Model Validation', icon = icon('check')
+    title = 'Model Validation', icon = icon('check'),
+    
+    fluidRow(
+      
+      column(
+        6,
+        h3('SWC validation'),
+        plotOutput('val_swc_plot', height = '250px')
+      ),
+      
+      column(
+        6,
+        h3('Tranpiration validation'),
+        plotOutput('val_e_plot', height = '250px')
+      ),
+      
+      br(), br(),
+      
+      p('These are the results of the model validation in 12 plots with known ',
+        'SWC and Transpiration up to date (', Sys.Date(), ').')
+    )
   ),
   
   # About tab (tabwith r package description, disclaimer and so on...)
