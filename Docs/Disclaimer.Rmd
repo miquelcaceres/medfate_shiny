@@ -56,6 +56,6 @@ responsibility for how the data in this website is used by third parties.
 
 ---
 
-![Vegetation Modeling Group](../www/LOGO_Group_scaled.png)  
-![Forest Sciences Centre of Catalonia (CTFC)](../www/logo_ctfc_scaled.png)  
+![Vegetation Modeling Group](../www/LOGO_Group_scaled.png)
+![Forest Sciences Centre of Catalonia (CTFC)](../www/logo_ctfc_scaled.png)
 ![Centre of Ecological Research and Forest Applications (CREAF)](../www/logo_creaf_scaled.png)
