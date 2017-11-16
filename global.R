@@ -9,8 +9,8 @@ library(shiny)
 
 old_wd <- getwd()
 
-# setwd('/home/miquel/MedfateValidation')
-setwd('/home/malditobarbudo/Documentos/00_Trabajo/CTFC/calibration_validation_medfate/work_structure/Validation')
+setwd('/home/miquel/MedfateValidation')
+# setwd('/home/malditobarbudo/Documentos/00_Trabajo/CTFC/calibration_validation_medfate/work_structure/Validation')
 
 data <- load_rdatas()
 
