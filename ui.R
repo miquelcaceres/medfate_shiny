@@ -145,7 +145,8 @@ navbarPage(
         p('In this imaginary plot you can ',
           'select a tree and a shrub species, change the LAI for that species ',
           'and specify the soil description. Output plots are redrawed with ',
-          'each change.')
+          'each change. At the bottom the input object used to modelize the ',
+          'forest dynamic is showed.')
       ),
       br(),
       
@@ -202,12 +203,29 @@ navbarPage(
         column(
           4,
           plotOutput('meteo_plot', width = '100%', height = "300px"),
-          plotOutput('e_plot', width = '100%', height = "300px")
+          plotOutput('e_plot', width = '100%', height = "300px"),
+          plotOutput('evap_plot', width = '100%', height = "300px")
         ),
         column(
           4,
           plotOutput('swc_plot', width = '100%', height = "300px"),
-          plotOutput('stress_plot', width = '100%', height = "300px")
+          plotOutput('stress_plot', width = '100%', height = "300px"),
+          plotOutput('watexp_plot', width = '100%', height = "300px")
+        )
+      ),
+      
+      # row for the swbInput object
+      br(),
+      
+      fluidRow(
+        column(
+          2
+          #empty
+        ),
+        column(
+          8,
+          h4('swbInput object'),
+          verbatimTextOutput('swb_input')
         )
       )
     )

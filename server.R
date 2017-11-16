@@ -109,8 +109,20 @@ function(input, output, session) {
   output$swc_plot <- renderPlot({
     
     # swc plot
+    soil_texture <- switch(
+      input$soil_tex,
+      Clay = c(70,10,20),
+      Sand = c(5,90,5),
+      Silt = c(10,10,90),
+      Loam = c(20,40,40),
+      SaLo = c(10,60,30),
+      SiLo = c(10,30,60)
+    )
+    
     examplesoil <- soil(defaultSoilParams(2))
     examplesoil$dVec <- c(300, input$soil_depth)
+    examplesoil$sand <- rep(soil_texture[2], 2)
+    examplesoil$clay <- rep(soil_texture[1], 2)
     
     swc_data <- as.data.frame(get_res()[['SoilWaterBalance']][,1:2]) %>%
       mutate(Date = as.Date(row.names(.)),
@@ -144,6 +156,74 @@ function(input, output, session) {
       scale_colour_manual(values = c('#26A65B', '#87D37C')) +
       labs(y = 'Plant Stress [0-1]') +
       theme_medfate()
+  })
+  
+  output$evap_plot <- renderPlot({
+    
+    # evap plot
+    as.data.frame(get_res()[['DailyBalance']]) %>%
+      mutate(Date = as.Date(row.names(.))) %>%
+      select(Date, Etot, Esoil, Eplanttot) %>%
+      gather(Origin, Evaporation, -Date) %>%
+      ggplot(aes(x = Date, y = Evaporation, colour = Origin)) +
+      geom_line(size = 1.5, alpha = 0.5) +
+      scale_colour_manual(values = c('#26A65B', '#F27935', 'black'),
+                          labels = c('Plants', 'Soil', 'Total')) +
+      labs(y = 'Evaporation') +
+      theme_medfate()
+  })
+  
+  output$watexp_plot <- renderPlot({
+    
+    # water export plot
+    as.data.frame(get_res()[['DailyBalance']]) %>%
+      mutate(Date = as.Date(row.names(.))) %>%
+      select(Date, Runoff, DeepDrainage) %>%
+      # mutate(Total = Runoff + DeepDrainage) %>%
+      gather(Export, Value, -Date) %>%
+      ggplot(aes(x = Date, y = Value, colour = Export)) +
+      geom_line(size = 1.5, alpha = 0.5) +
+      scale_colour_manual(values = c('#1F3A93', '#3498DB')) +
+      labs(y = 'Water export') +
+      theme_medfate()
+  })
+  
+  output$swb_input <- renderPrint({
+    
+    # build the input object
+    t_1 <- newParams[as.numeric(input$tree_1) + 1, 'Name']
+    s_1 <- newParams[as.numeric(input$shrub_1) + 1, 'Name']
+    
+    data(examplemeteo)
+    
+    data(exampleforest)
+    exampleforest[['treeData']] <- exampleforest[['treeData']][1,]
+    exampleforest[['shrubData']] <- exampleforest[['shrubData']][1,]
+    exampleforest[['treeData']][['Species']] <- as.numeric(input$tree_1)
+    exampleforest[['shrubData']][['Species']] <- as.numeric(input$shrub_1)
+    
+    soil_texture <- switch(
+      input$soil_tex,
+      Clay = c(70,10,20),
+      Sand = c(5,90,5),
+      Silt = c(10,10,90),
+      Loam = c(20,40,40),
+      SaLo = c(10,60,30),
+      SiLo = c(10,30,60)
+    )
+    
+    examplesoil <- soil(defaultSoilParams(2))
+    examplesoil$dVec <- c(300, input$soil_depth)
+    examplesoil$sand <- rep(soil_texture[2], 2)
+    examplesoil$clay <- rep(soil_texture[1], 2)
+    
+    control <- defaultControl()
+    
+    input_simple <- forest2swbInput(exampleforest, examplesoil, newParams, control)
+    
+    input_simple$above$LAI_live <- c(input$lai_t1, input$lai_s1)
+    
+    input_simple
   })
   
 }
