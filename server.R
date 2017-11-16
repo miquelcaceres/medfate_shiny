@@ -226,4 +226,35 @@ function(input, output, session) {
     input_simple
   })
   
+  
+  # Download helpers (Vignettes) ####
+  
+  output$swb_dwn <- downloadHandler(
+    filename = 'SoilWaterBalance.pdf',
+    content = function(file) {
+      file.copy('Docs/SoilWaterBalance.pdf', file)
+    }
+  )
+  
+  output$growth_dwn <- downloadHandler(
+    filename = 'ForestGrowth.pdf',
+    content = function(file) {
+      file.copy('Docs/ForestGrowth.pdf', file)
+    }
+  )
+  
+  output$hyd_dwn <- downloadHandler(
+    filename = 'Hydraulics.pdf',
+    content = function(file) {
+      file.copy('Docs/Hydraulics.pdf', file)
+    }
+  )
+  
+  output$roots_dwn <- downloadHandler(
+    filename = 'RootSystems.pdf',
+    content = function(file) {
+      file.copy('Docs/RootSystems.pdf', file)
+    }
+  )
+  
 }
