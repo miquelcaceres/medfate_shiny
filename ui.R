@@ -133,7 +133,84 @@ navbarPage(
   
   # Shiny example app ####
   tabPanel(
-    title = 'Example_App', icon = icon('television')
+    title = 'Example_App', icon = icon('television'),
+    
+    fluidPage(
+      
+      # explanation
+      fluidRow(
+        h2('Play with medfate!'),
+        p('With this app you can explore the capabilities and visualize ',
+          'the outputs of the modelization.'),
+        p('In this imaginary plot you can ',
+          'select a tree and a shrub species, change the LAI for that species ',
+          'and specify the soil description. Output plots are redrawed with ',
+          'each change.')
+      ),
+      br(),
+      
+      # app
+      fluidRow(
+        
+        # inputs
+        column(
+          2,
+          
+          inputPanel(
+            # Species inputs
+            selectInput(
+              'tree_1', 'Tree cohort species',
+              choices = c(
+                'Pinus sylvestris' = 27,
+                'Pinus halepensis' = 22,
+                'Quercus ilex' = 33,
+                'Quercus pubescens' = 32,
+                'Fagus sylvatica' = 13,
+                'Arbutus unedo' = 5
+              ),
+              selected = c(27)
+            ),
+            
+            selectInput(
+              'shrub_1', 'Shrub cohort species',
+              choices = c(
+                'Buxus sempervirens' = 6,
+                'Arbutus unedo' = 5,
+                'Pistacia lentiscus' = 28,
+                'Viburnum spp.' = 43,
+                'Phillyrea latifolia' = 21,
+                'Quercus ilex' = 33
+              ),
+              selected = c(6)
+            ),
+            
+            # lai inputs
+            numericInput('lai_t1', 'Select LAI for Sp 1', 1, 0.1, 5, 0.1),
+            numericInput('lai_s1', 'Select LAI for Sp 1', 0.3, 0.1, 5, 0.1),
+            
+            # soil inputs
+            numericInput('soil_depth', 'Second soil layer width [mm] (First layer fixed at 300).',
+                         value = 700, min = 100, max = 2000, step = 1),
+            selectInput('soil_tex', 'Soil texture (USDA classes)',
+                        choices = c('Clay', 'Sand', 'Silt',
+                                    'Loam', 'SaLo', 'SiLo'),
+                        selected = 'Loam')
+          )
+        ),
+        
+        # outputs
+        column(
+          4,
+          plotOutput('meteo_plot', width = '100%', height = "300px"),
+          plotOutput('e_plot', width = '100%', height = "300px")
+        ),
+        column(
+          4,
+          plotOutput('swc_plot', width = '100%', height = "300px"),
+          plotOutput('stress_plot', width = '100%', height = "300px")
+        )
+      )
+    )
   ),
   
   # Validation tab ####
