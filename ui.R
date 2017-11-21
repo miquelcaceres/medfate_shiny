@@ -212,27 +212,27 @@ navbarPage(
             selectInput(
               'tree_1', 'Tree cohort species',
               choices = c(
-                'Pinus sylvestris' = 27,
-                'Pinus halepensis' = 22,
-                'Quercus ilex' = 33,
-                'Quercus pubescens' = 32,
-                'Fagus sylvatica' = 13,
-                'Arbutus unedo' = 5
+                'Pinus sylvestris' = 59,
+                'Pinus halepensis' = 54,
+                'Quercus ilex' = 67,
+                'Quercus pubescens' = 69,
+                'Fagus sylvatica' = 37,
+                'Arbutus unedo' = 6
               ),
-              selected = c(27)
+              selected = c(59)
             ),
             
             selectInput(
               'shrub_1', 'Shrub cohort species',
               choices = c(
-                'Buxus sempervirens' = 6,
-                'Arbutus unedo' = 5,
-                'Pistacia lentiscus' = 28,
-                'Viburnum spp.' = 43,
-                'Phillyrea latifolia' = 21,
-                'Quercus ilex' = 33
+                'Buxus sempervirens' = 12,
+                'Arbutus unedo' = 6,
+                'Pistacia lentiscus' = 61,
+                'Viburnum spp.' = 88,
+                'Phillyrea latifolia' = 53,
+                'Quercus ilex' = 67
               ),
-              selected = c(6)
+              selected = c(12)
             ),
             
             # lai inputs
