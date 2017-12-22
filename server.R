@@ -15,10 +15,10 @@ function(input, output, session) {
   # update inputs ####
   observe({
     
-    data('newParams', package = 'MedfateValidation')
+    data('SpParamsMED', package = 'medfate')
     
-    t_1 <- newParams[as.numeric(input$tree_1) + 1, 'Name']
-    s_1 <- newParams[as.numeric(input$shrub_1) + 1, 'Name']
+    t_1 <- SpParamsMED[as.numeric(input$tree_1) + 1, 'Name']
+    s_1 <- SpParamsMED[as.numeric(input$shrub_1) + 1, 'Name']
     
     updateNumericInput(session, 'lai_t1', label = paste0('Select LAI for ', t_1),
                        1, 0.1, 5, 0.1)
@@ -32,8 +32,8 @@ function(input, output, session) {
     
     # build the input object
     
-    t_1 <- newParams[as.numeric(input$tree_1) + 1, 'Name']
-    s_1 <- newParams[as.numeric(input$shrub_1) + 1, 'Name']
+    t_1 <- SpParamsMED[as.numeric(input$tree_1) + 1, 'Name']
+    s_1 <- SpParamsMED[as.numeric(input$shrub_1) + 1, 'Name']
     
     data(examplemeteo)
     
@@ -60,7 +60,7 @@ function(input, output, session) {
     
     control <- defaultControl()
     
-    input_simple <- forest2swbInput(exampleforest, examplesoil, newParams, control)
+    input_simple <- forest2swbInput(exampleforest, examplesoil, SpParamsMED, control)
     
     input_simple$above$LAI_live <- c(input$lai_t1, input$lai_s1)
     
@@ -74,8 +74,8 @@ function(input, output, session) {
   
   output$e_plot <- renderPlot({
     
-    t_1 <- newParams[as.numeric(input$tree_1) + 1, 'Name']
-    s_1 <- newParams[as.numeric(input$shrub_1) + 1, 'Name']
+    t_1 <- SpParamsMED[as.numeric(input$tree_1) + 1, 'Name']
+    s_1 <- SpParamsMED[as.numeric(input$shrub_1) + 1, 'Name']
     
     # transp plot
     transp_data <- as.data.frame(get_res()[['PlantTranspiration']])
@@ -142,8 +142,8 @@ function(input, output, session) {
   output$stress_plot <- renderPlot({
     
     # stress plot
-    t_1 <- newParams[as.numeric(input$tree_1) + 1, 'Name']
-    s_1 <- newParams[as.numeric(input$shrub_1) + 1, 'Name']
+    t_1 <- SpParamsMED[as.numeric(input$tree_1) + 1, 'Name']
+    s_1 <- SpParamsMED[as.numeric(input$shrub_1) + 1, 'Name']
     
     stress_data <- as.data.frame(get_res()[['PlantStress']])
     names(stress_data) <- c(t_1, s_1)
@@ -191,8 +191,8 @@ function(input, output, session) {
   output$swb_input <- renderPrint({
     
     # build the input object
-    t_1 <- newParams[as.numeric(input$tree_1) + 1, 'Name']
-    s_1 <- newParams[as.numeric(input$shrub_1) + 1, 'Name']
+    t_1 <- SpParamsMED[as.numeric(input$tree_1) + 1, 'Name']
+    s_1 <- SpParamsMED[as.numeric(input$shrub_1) + 1, 'Name']
     
     data(examplemeteo)
     
@@ -219,7 +219,7 @@ function(input, output, session) {
     
     control <- defaultControl()
     
-    input_simple <- forest2swbInput(exampleforest, examplesoil, newParams, control)
+    input_simple <- forest2swbInput(exampleforest, examplesoil, SpParamsMED, control)
     
     input_simple$above$LAI_live <- c(input$lai_t1, input$lai_s1)
     
