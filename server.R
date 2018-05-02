@@ -124,10 +124,11 @@ function(input, output, session) {
     examplesoil$sand <- rep(soil_texture[2], 2)
     examplesoil$clay <- rep(soil_texture[1], 2)
     
+    Theta_FC = soil.thetaFC(examplesoil)
     swc_data <- as.data.frame(get_res()[['SoilWaterBalance']][,1:2]) %>%
       mutate(Date = as.Date(row.names(.)),
-             Shallow = W.1 * examplesoil[['Theta_FC']][1],
-             Deep = W.2 * examplesoil[['Theta_FC']][2]) %>%
+             Shallow = W.1 * Theta_FC[1],
+             Deep = W.2 * Theta_FC[2]) %>%
       select(Date, Shallow, Deep)
     
    swc_data %>%
@@ -229,10 +230,17 @@ function(input, output, session) {
   
   # Download helpers (Vignettes) ####
   
-  output$swb_dwn <- downloadHandler(
-    filename = 'SoilWaterBalance.pdf',
+  output$swb_dwn1 <- downloadHandler(
+    filename = 'SimpleModelSWB.pdf',
     content = function(file) {
-      file.copy('Docs/SoilWaterBalance.pdf', file)
+      file.copy('Docs/SimpleModelSWB.pdf', file)
+    }
+  )
+  
+  output$swb_dwn2 <- downloadHandler(
+    filename = 'ComplexModelSWB.pdf',
+    content = function(file) {
+      file.copy('Docs/ComplexModelSWB.pdf', file)
     }
   )
   
@@ -244,58 +252,51 @@ function(input, output, session) {
   )
   
   output$hyd_dwn <- downloadHandler(
-    filename = 'Hydraulics.pdf',
+    filename = 'HydraulicsPhotosynthesis.pdf',
     content = function(file) {
-      file.copy('Docs/Hydraulics.pdf', file)
+      file.copy('Docs/HydraulicsPhotosynthesis.pdf', file)
     }
   )
   
-  output$roots_dwn <- downloadHandler(
-    filename = 'RootSystems.pdf',
-    content = function(file) {
-      file.copy('Docs/RootSystems.pdf', file)
-    }
-  )
-  
-  # Validation ####
-  
-  # swc_plot
-  output$val_swc_plot <- renderPlot({
-    swc_table_raw %>%
-      dplyr::rename(
-        Rsq_Granier = R_sq_simple,
-        Rsq_Sperry = R_sq_complex,
-        Rsq_both = R_sq_both) %>%
-      gather(Statistic, Value, -Site, -Layer) %>%
-      tidyr::separate(Statistic, c('Statistic', 'Model')) %>%
-      dplyr::mutate(Model = stringr::str_replace(Model, 'both', 'versus'),
-                    Model = stringr::str_replace(Model, 'simple', 'Granier'),
-                    Model = stringr::str_replace(Model, 'complex', 'Sperry')) %>%
-      ggplot(aes(x = Model, y = Value)) +
-      geom_boxplot() +
-      facet_wrap(~Statistic, ncol = 3, scales = 'free') +
-      labs(x = '', y = '') +
-      theme_medfate()
-  })
-  
-  # E plot
-  output$val_e_plot <- renderPlot({
-    etot_table_raw %>%
-      dplyr::rename(
-        Eplanttot_Rsq_simple = Eplanttot_r_sq_simple,
-        Eplanttot_Rsq_complex = Eplanttot_r_sq_complex,
-        Eplanttot_Rsq_both = Eplanttot_r_sq_both) %>%
-      gather(Statistic, Value, -Site) %>%
-      tidyr::separate(Statistic, c('Var', 'Statistic', 'Model')) %>%
-      dplyr::select(Site, Statistic, Model, Value) %>%
-      dplyr::mutate(Statistic = stringr::str_replace(Statistic, 'bias', 'Bias')) %>%
-      dplyr::mutate(Model = stringr::str_replace(Model, 'both', 'versus'),
-                    Model = stringr::str_replace(Model, 'simple', 'Granier'),
-                    Model = stringr::str_replace(Model, 'complex', 'Sperry')) %>%
-      ggplot(aes(x = Model, y = Value)) +
-      geom_boxplot() +
-      facet_wrap(~Statistic, ncol = 3, scales = 'free') +
-      labs(x = '', y = '') +
-      theme_medfate()
-  })
+  # # Validation ####
+  # 
+  # # swc_plot
+  # output$val_swc_plot <- renderPlot({
+  #   swc_table_raw %>%
+  #     dplyr::rename(
+  #       Rsq_Granier = R_sq_simple,
+  #       Rsq_Sperry = R_sq_complex,
+  #       Rsq_both = R_sq_both) %>%
+  #     gather(Statistic, Value, -Site, -Layer) %>%
+  #     tidyr::separate(Statistic, c('Statistic', 'Model')) %>%
+  #     dplyr::mutate(Model = stringr::str_replace(Model, 'both', 'versus'),
+  #                   Model = stringr::str_replace(Model, 'simple', 'Granier'),
+  #                   Model = stringr::str_replace(Model, 'complex', 'Sperry')) %>%
+  #     ggplot(aes(x = Model, y = Value)) +
+  #     geom_boxplot() +
+  #     facet_wrap(~Statistic, ncol = 3, scales = 'free') +
+  #     labs(x = '', y = '') +
+  #     theme_medfate()
+  # })
+  # 
+  # # E plot
+  # output$val_e_plot <- renderPlot({
+  #   etot_table_raw %>%
+  #     dplyr::rename(
+  #       Eplanttot_Rsq_simple = Eplanttot_r_sq_simple,
+  #       Eplanttot_Rsq_complex = Eplanttot_r_sq_complex,
+  #       Eplanttot_Rsq_both = Eplanttot_r_sq_both) %>%
+  #     gather(Statistic, Value, -Site) %>%
+  #     tidyr::separate(Statistic, c('Var', 'Statistic', 'Model')) %>%
+  #     dplyr::select(Site, Statistic, Model, Value) %>%
+  #     dplyr::mutate(Statistic = stringr::str_replace(Statistic, 'bias', 'Bias')) %>%
+  #     dplyr::mutate(Model = stringr::str_replace(Model, 'both', 'versus'),
+  #                   Model = stringr::str_replace(Model, 'simple', 'Granier'),
+  #                   Model = stringr::str_replace(Model, 'complex', 'Sperry')) %>%
+  #     ggplot(aes(x = Model, y = Value)) +
+  #     geom_boxplot() +
+  #     facet_wrap(~Statistic, ncol = 3, scales = 'free') +
+  #     labs(x = '', y = '') +
+  #     theme_medfate()
+  # })
 }

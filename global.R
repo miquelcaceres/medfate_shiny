@@ -7,35 +7,35 @@ library(ggplot2)
 library(DT)
 library(shiny)
 
-old_wd <- getwd()
+# old_wd <- getwd()
 
-setwd('/home/miquel/MedfateValidation')
+# setwd('/home/miquel/MedfateValidation')
 # setwd('/home/malditobarbudo/Documentos/00_Trabajo/CTFC/calibration_validation_medfate/work_structure/Validation')
 
-data <- load_rdatas(type="Definitive")
-
-# swc
-data %>%
-  purrr::map(function(x) {
-    res <- x[['SWC_stats']]
-    res[['Site']] <- x[['code']]
-    return(res)
-  }) %>%
-  bind_rows() %>%
-  dplyr::select(Site, Layer, everything()) -> swc_table_raw
-
-# etot
-data %>%
-  purrr::map(function(x) {
-    res <- x[['Eplanttot_stats']]
-    res <- purrr::flatten(res)
-    res[['Site']] <- x[['code']]
-    return(res)
-  }) %>%
-  bind_rows() %>%
-  dplyr::select('Site', c(2, 3, 1, 5, 6, 4, 8, 9, 7)) -> etot_table_raw
-
-setwd(old_wd)
+# data <- load_rdatas(type="Definitive")
+# 
+# # swc
+# data %>%
+#   purrr::map(function(x) {
+#     res <- x[['SWC_stats']]
+#     res[['Site']] <- x[['code']]
+#     return(res)
+#   }) %>%
+#   bind_rows() %>%
+#   dplyr::select(Site, Layer, everything()) -> swc_table_raw
+# 
+# # etot
+# data %>%
+#   purrr::map(function(x) {
+#     res <- x[['Eplanttot_stats']]
+#     res <- purrr::flatten(res)
+#     res[['Site']] <- x[['code']]
+#     return(res)
+#   }) %>%
+#   bind_rows() %>%
+#   dplyr::select('Site', c(2, 3, 1, 5, 6, 4, 8, 9, 7)) -> etot_table_raw
+# 
+# setwd(old_wd)
 
 ################################################################################
 theme_medfate <- function(base_size = 12, base_family = "") {

@@ -117,7 +117,7 @@ navbarPage(
   
   # Doc and Vignettes ####
   tabPanel(
-    title = 'Documentation & Vignettes', icon = icon('book'),
+    title = 'Documentation', icon = icon('book'),
     
     # a little space
     br(),
@@ -126,7 +126,7 @@ navbarPage(
       
       column(
         2,
-        downloadButton('swb_dwn', label = 'Soil Water Balance')
+        downloadButton('swb_dwn1', label = 'Simple Water Balance')
       ),
       
       column(
@@ -141,14 +141,15 @@ navbarPage(
       
       column(
         2, offset = 1,
-        downloadButton('growth_dwn', label = 'Forest Growth')
+        downloadButton('swb_dwn2', label = 'Complex Water Balance')
       ),
       
       column(
         3,
-        p('Simulating plant growth of a set of cohorts (competing for light ',
-          'and water) in a single forest stand or for multiple stands ',
-          'distributed spatially.')
+        p('Local water processes (soil water balance of forest stands). ',
+          'Processes affecting soil water content include rainfall, canopy ',
+          'interception, infiltration and runoff, percolation and deep ',
+          'drainage, soil evaporation and plant transpiration.')
       )
     ),
     
@@ -157,7 +158,18 @@ navbarPage(
     fluidRow(
       
       column(
-        2,
+        2, 
+        downloadButton('growth_dwn', label = 'Forest Growth')
+      ),
+      
+      column(
+        3,
+        p('Simulating plant growth of a set of cohorts (competing for light ',
+          'and water) in a single forest stand or for multiple stands ',
+          'distributed spatially.')
+      ),
+      column(
+        2,offset = 1,
         downloadButton('hyd_dwn', label = 'Hydraulics')
       ),
       
@@ -166,17 +178,6 @@ navbarPage(
         p('Hydraulics details of the Sperry et al. (2016) model for canopy water ',
           'supply, a cost-benefit approach where hydraulic costs of opening the ',
           'stomata are compared against photosynthetic gain.')
-      ),
-      
-      column(
-        2, offset = 1,
-        downloadButton('roots_dwn', label = 'Root Systems')
-      ),
-      
-      column(
-        3,
-        p('Soil description, root distribution and belowground hydraulic ',
-          'conductances.')
       )
     )
   ),
@@ -282,30 +283,30 @@ navbarPage(
   ),
   
   # Validation tab ####
-  tabPanel(
-    title = 'Model Validation', icon = icon('check'),
-    
-    fluidRow(
-      
-      column(
-        6,
-        h3('SWC validation'),
-        plotOutput('val_swc_plot', height = '250px')
-      ),
-      
-      column(
-        6,
-        h3('Tranpiration validation'),
-        plotOutput('val_e_plot', height = '250px')
-      ),
-      
-      br(), br(),
-      
-      p('These are the results of the model validation in 12 plots with known ',
-        'SWC and Transpiration up to date (', Sys.Date(), ').')
-    )
-  ),
-  
+  # tabPanel(
+  #   title = 'Model Validation', icon = icon('check'),
+  #   
+  #   fluidRow(
+  #     
+  #     column(
+  #       6,
+  #       h3('SWC validation'),
+  #       plotOutput('val_swc_plot', height = '250px')
+  #     ),
+  #     
+  #     column(
+  #       6,
+  #       h3('Tranpiration validation'),
+  #       plotOutput('val_e_plot', height = '250px')
+  #     ),
+  #     
+  #     br(), br(),
+  #     
+  #     p('These are the results of the model validation in 12 plots with known ',
+  #       'SWC and Transpiration up to date (', Sys.Date(), ').')
+  #   )
+  # ),
+  # 
   # About tab (tabwith r package description, disclaimer and so on...)
   tabPanel(
     title = 'About', icon = icon('info-circle'),
