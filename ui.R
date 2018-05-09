@@ -116,70 +116,85 @@ navbarPage(
   ),
   
   # Doc and Vignettes ####
-  tabPanel(
-    title = 'Documentation', icon = icon('book'),
-    
-    # a little space
-    br(),
-    
-    fluidRow(
-      
-      column(
-        2,
-        downloadButton('swb_dwn1', label = 'Simple Water Balance')
-      ),
-      
-      column(
-        3,
-        p('Local water processes (soil water balance of forest stands). ',
-          'Processes affecting soil water content include rainfall, canopy ',
-          'interception, infiltration and runoff, percolation and deep ',
-          'drainage, soil evaporation and plant transpiration.')
-      ),
-      
-      
-      
-      column(
-        2, offset = 1,
-        downloadButton('swb_dwn2', label = 'Complex Water Balance')
-      ),
-      
-      column(
-        3,
-        p('Local water processes (soil water balance of forest stands). ',
-          'Processes affecting soil water content include rainfall, canopy ',
-          'interception, infiltration and runoff, percolation and deep ',
-          'drainage, soil evaporation and plant transpiration.')
-      )
-    ),
-    
-    br(), br(), br(),
-    
-    fluidRow(
-      
-      column(
-        2, 
-        downloadButton('growth_dwn', label = 'Forest Growth')
-      ),
-      
-      column(
-        3,
-        p('Simulating plant growth of a set of cohorts (competing for light ',
-          'and water) in a single forest stand or for multiple stands ',
-          'distributed spatially.')
-      ),
-      column(
-        2,offset = 1,
-        downloadButton('hyd_dwn', label = 'Hydraulics')
-      ),
-      
-      column(
-        3,
-        p('Hydraulics details of the Sperry et al. (2016) model for canopy water ',
-          'supply, a cost-benefit approach where hydraulic costs of opening the ',
-          'stomata are compared against photosynthetic gain.')
-      )
-    )
+  navbarMenu("Documentation", icon = icon('book'),
+             tabPanel(
+               title = 'Overview',
+               includeMarkdown(system.file("doc/0_PackageOverview.Rmd", package = "medfate"))
+             ),
+             tabPanel(
+               title = 'Simple water balance',
+               includeMarkdown(system.file("doc/1_SimpleWaterBalance.Rmd", package = "medfate"))
+             ),
+             tabPanel(
+               title = 'Complex water balance',
+               includeMarkdown(system.file("doc/2_ComplexWaterBalance.Rmd", package = "medfate"))
+             ),
+             "----",
+             tabPanel(
+               title = 'Model description', 
+               
+               # a little space
+               br(),
+               
+               fluidRow(
+                 
+                 column(
+                   2,
+                   downloadButton('swb_dwn1', label = 'Simple Water Balance')
+                 ),
+                 
+                 column(
+                   3,
+                   p('Local water processes (soil water balance of forest stands). ',
+                     'Processes affecting soil water content include rainfall, canopy ',
+                     'interception, infiltration and runoff, percolation and deep ',
+                     'drainage, soil evaporation and plant transpiration.')
+                 ),
+                 
+                 
+                 
+                 column(
+                   2, offset = 1,
+                   downloadButton('swb_dwn2', label = 'Complex Water Balance')
+                 ),
+                 
+                 column(
+                   3,
+                   p('Local water processes (soil water balance of forest stands). ',
+                     'Processes affecting soil water content include rainfall, canopy ',
+                     'interception, infiltration and runoff, percolation and deep ',
+                     'drainage, soil evaporation and plant transpiration.')
+                 )
+               ),
+               
+               br(), br(), br(),
+               
+               fluidRow(
+                 
+                 column(
+                   2, 
+                   downloadButton('growth_dwn', label = 'Forest Growth')
+                 ),
+                 
+                 column(
+                   3,
+                   p('Simulating plant growth of a set of cohorts (competing for light ',
+                     'and water) in a single forest stand or for multiple stands ',
+                     'distributed spatially.')
+                 ),
+                 column(
+                   2,offset = 1,
+                   downloadButton('hyd_dwn', label = 'Hydraulics')
+                 ),
+                 
+                 column(
+                   3,
+                   p('Hydraulics details of the Sperry et al. (2016) model for canopy water ',
+                     'supply, a cost-benefit approach where hydraulic costs of opening the ',
+                     'stomata are compared against photosynthetic gain.')
+                 )
+               )
+             )
   ),
   
   # Shiny example app ####
