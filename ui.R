@@ -116,25 +116,40 @@ navbarPage(
   ),
   
   # Doc and Vignettes ####
-  navbarMenu("Documentation", icon = icon('book'),
-             tabPanel(
-               title = 'Overview',
-               includeMarkdown(system.file("doc/0_PackageOverview.Rmd", package = "medfate"))
-             ),
-             tabPanel(
-               title = 'Simple water balance',
-               includeMarkdown(system.file("doc/1_SimpleWaterBalance.Rmd", package = "medfate"))
-             ),
-             tabPanel(
-               title = 'Complex water balance',
-               includeMarkdown(system.file("doc/2_ComplexWaterBalance.Rmd", package = "medfate"))
-             ),
-             "----",
-             tabPanel(
-               title = 'Model description', 
+  tabPanel("Documentation", icon = icon('book'),
+           fluidPage(
+             h2('Model vignettes'),
+             br(),
+
+             fluidRow(
+                 
+                 #render(system.file("doc/0_PackageOverview.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 column(
+                   2,
+                   downloadButton('pck_vig_dwn1', label = 'Package overview')
+                 ),
+                 
+                 
+                 #render(system.file("doc/1_SimpleWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 column(
+                   2, offset = 1,
+                   downloadButton('swb_vig_dwn1', label = 'Simple Water Balance')
+                 ),
+                 
+                 #render(system.file("doc/2_ComplexWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 column(
+                   2, offset = 1,
+                   downloadButton('swb_vig_dwn2', label = 'Complex Water Balance')
+                 )
+               )
+           ),
+           br(), br(), br(),
+           fluidPage(
+             
+           h2('Model description'),
                
-               # a little space
-               br(),
+           # a little space
+           br(),
                
                fluidRow(
                  
@@ -194,7 +209,7 @@ navbarPage(
                      'stomata are compared against photosynthetic gain.')
                  )
                )
-             )
+           )
   ),
   
   # Shiny example app ####

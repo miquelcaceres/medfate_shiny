@@ -229,7 +229,26 @@ function(input, output, session) {
   
   
   # Download helpers (Vignettes) ####
+  output$pck_vig_dwn1 <- downloadHandler(
+    filename = '0_PackageOverview.html',
+    content = function(file) {
+      file.copy("Docs/0_PackageOverview.html",file)
+    }
+  )
+  output$swb_vig_dwn1 <- downloadHandler(
+    filename = '1_SimpleWaterBalance.html',
+    content = function(file) {
+      file.copy("Docs/1_SimpleWaterBalance.html",file)
+    }
+  )
+  output$swb_vig_dwn2 <- downloadHandler(
+    filename = '2_ComplexWaterBalance.html',
+    content = function(file) {
+      file.copy("Docs/2_ComplexWaterBalance.html",file)
+    }
+  )
   
+  # Download helpers (Model description) ####
   output$swb_dwn1 <- downloadHandler(
     filename = 'SimpleModelSWB.pdf',
     content = function(file) {
