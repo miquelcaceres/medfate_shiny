@@ -247,6 +247,12 @@ function(input, output, session) {
       file.copy("Docs/2_ComplexWaterBalance.html",file)
     }
   )
+  output$growth_vig_dwn2 <- downloadHandler(
+    filename = '3_ForestGrowth.html',
+    content = function(file) {
+      file.copy("Docs/3_ForestGrowth.html",file)
+    }
+  )
   
   # Download helpers (Model description) ####
   output$swb_dwn1 <- downloadHandler(

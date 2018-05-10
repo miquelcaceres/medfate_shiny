@@ -11,7 +11,7 @@
 
 <meta name="author" content="Miquel De Caceres" />
 
-<meta name="date" content="2018-05-09" />
+<meta name="date" content="2018-05-10" />
 
 <title>Package overview</title>
 
@@ -121,7 +121,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Package overview</h1>
 <h4 class="author"><em>Miquel De Caceres</em></h4>
-<h4 class="date"><em>2018-05-09</em></h4>
+<h4 class="date"><em>2018-05-10</em></h4>
 
 </div>
 
@@ -146,8 +146,19 @@ $(document).ready(function () {
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>TO BE DONE</p>
+<p>Being able to anticipate the impact of global change on ecosystems is one of the major environmental challenges in contemporary societies. However, uncertainties in how ecological systems function and practical constraints in how to integrate available information prevent the development of robust and reliable predictive models. Despite the amount of knowledge accumulated about the functioning and dynamics of Mediterranean ecosystems, the scientists should make coordinate their efforts to address the challenge of integrating the different global change drivers in a modelling framework useful for research and applications.</p>
+<p>The R package <code>medfate</code> has been designed to study the characteristics and simulate dynamics of Mediterranean forests. Fire and drought impacts are the main drivers covered by the package. Representation of vegetation is not spatially-explicit (i.e. trees or shrubs do not have explicit coordinates within plots). This simplified representation is chosen so that package functions can be easily applied to plot data from national forest inventories. Since the package intends to facilitate predictions of both structure and composition, the taxonomic identity of plants is stored, and parameter values need to be provided for each taxonomic entity (but the package could be used with functional groups). Although landscape-level processes will eventually included, the package currently offers simulation of local processes only.</p>
 <pre class="r"><code>library(medfate)</code></pre>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## Loading required package: spdep</code></pre>
+<pre><code>## Loading required package: Matrix</code></pre>
+<pre><code>## Loading required package: spData</code></pre>
+<pre><code>## To access larger datasets in this package, install the spDataLarge
+## package with: `install.packages('spDataLarge',
+## repos='https://nowosad.github.io/drat/', type='source'))`</code></pre>
+<pre><code>## Loading required package: GSIF</code></pre>
+<pre><code>## GSIF version 0.5-4 (2017-04-25)</code></pre>
+<pre><code>## URL: http://gsif.r-forge.r-project.org/</code></pre>
 </div>
 <div id="data-structures" class="section level2">
 <h2>Data structures</h2>
@@ -191,6 +202,7 @@ exampleforest</code></pre>
 </div>
 <div id="spatial-forest-objects" class="section level3">
 <h3>Spatial forest objects</h3>
+<p>TO BE DONE</p>
 </div>
 </div>
 <div id="dynamic-simulation-functions" class="section level2">
@@ -230,7 +242,12 @@ exampleforest</code></pre>
 <h2>Static functions</h2>
 <div id="plant-and-forest-attributes" class="section level3">
 <h3>Plant and forest attributes</h3>
-<p>TO BE DONE</p>
+<p>Package <code>medfate</code> include a number of functions to examine properties of the plants conforming the <code>forest</code> object, summary functions at the stand level or vertical profiles of several physical properties:</p>
+<ul>
+<li><strong>plant.* </strong>: Cohort-level information (species name, id, leaf area, height…)</li>
+<li><strong>forest.* </strong>: Forest-level attributes (e.g. basal area)</li>
+<li><strong>vprofile.* </strong>: Vertical profiles (light, wind, fuel density, leaf area density).</li>
+</ul>
 </div>
 <div id="fuel-properties-and-fire-hazard" class="section level3">
 <h3>Fuel properties and fire hazard</h3>
@@ -250,12 +267,12 @@ exampleforest</code></pre>
 <li><strong>biophysics.* </strong>: Physical and biophysical utility functions.</li>
 <li><strong>hydraulics.* </strong>: Plant hydraulics.</li>
 <li><strong>light.* </strong>: Light extinction and absortion.</li>
+<li><strong>moisture.* </strong>: Live tissue moisture.</li>
 <li><strong>photo.* </strong>: Leaf photosynthesis.</li>
 <li><strong>root.* </strong>: Root distribution and conductance calculations.</li>
 <li><strong>soil.* </strong>: Soil hydraulics and thermodynamics.</li>
 <li><strong>swb.* </strong>: Soil water balance subprocesses (rainfall interception, soil evaporation, soil infiltration) and parameter optimization/calibration routines.</li>
-<li><strong>transp.* </strong>: Regulation of stomatal transpiration.</li>
-<li><strong>vprofile.* </strong>: Vertical profiles (light, wind, fuel density, leaf area density).</li>
+<li><strong>transp.* </strong>: Stomatal regulation and resulting transpiration/photosynthesis.</li>
 </ul>
 </div>
 </div>

@@ -145,16 +145,21 @@ navbarPage(
                  
                  #render(system.file("doc/1_SimpleWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
                  column(
-                   2, offset = 1,
+                   2, 
                    downloadButton('swb_vig_dwn1', label = 'Simple Water Balance')
                  ),
                  
                  #render(system.file("doc/2_ComplexWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
                  column(
-                   2, offset = 1,
+                   2, 
                    downloadButton('swb_vig_dwn2', label = 'Complex Water Balance')
+                 ),
+                 #render(system.file("doc/3_ForestGrowth.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 column(
+                   2, 
+                   downloadButton('growth_vig_dwn2', label = 'Forest Growth')
                  )
-               )
+             )
            ),
            br(), br(),
            fluidPage(
@@ -193,7 +198,7 @@ navbarPage(
                  )
                ),
                
-               br(), br(), br(),
+               br(), 
                
                fluidRow(
                  
@@ -205,8 +210,7 @@ navbarPage(
                  column(
                    3,
                    p('Simulating plant growth of a set of cohorts (competing for light ',
-                     'and water) in a single forest stand or for multiple stands ',
-                     'distributed spatially.')
+                     'and water) in a single forest stand or for multiple stands.')
                  ),
                  column(
                    2,offset = 1,
@@ -219,7 +223,7 @@ navbarPage(
                      'photosynthesis processes.')
                  )
               ),
-             br(), br(), br(),
+             br(),
            
            fluidRow(
              
@@ -363,11 +367,49 @@ navbarPage(
   #   )
   # ),
   # 
-  # About tab (tabwith r package description, disclaimer and so on...)
+  
+  # About tab (tabwith r package description, disclaimer and so on...) ####
   tabPanel(
     title = 'About', icon = icon('info-circle'),
     
     # RMardown document
-    includeMarkdown('Docs/Disclaimer.Rmd')
+    includeMarkdown('Docs/Disclaimer.Rmd'),
+    
+    # an space
+    br(), br(),
+    
+    # logos row
+    div(
+      style = 'text-align:center',
+      fluidRow(
+        column(
+          4,
+          a(
+            id = 'logo_grupo',
+            href = "http://vegmod.ctfc.cat/",
+            img(style = 'display:inline-block',
+                src = 'LOGO_Group_scaled.png')
+          )
+        ),
+        column(
+          4,
+          a(
+            id = 'logo_ctfc',
+            href = "http://www.ctfc.cat/",
+            img(style = 'display:inline-block',
+                src = 'logo_ctfc_scaled.png')
+          )
+        ),
+        column(
+          4,
+          a(
+            id = 'logo_creaf',
+            href = "http://www.creaf.cat/",
+            img(style = 'display:inline-block',
+                src = 'logo_creaf_scaled.png')
+          )
+        )
+      )
+    )
   )
 )
