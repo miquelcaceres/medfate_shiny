@@ -128,9 +128,10 @@ navbarPage(
                )
             )
           ),
-          br(), br(), br(),
+          br(), br(), 
           fluidPage(
-            h2('Model vignettes'),
+            h2('Package vignettes'),
+            h4('Tutorials explaining the main functions of the package and how to run simulations'),
             br(),
             
              fluidRow(
@@ -155,14 +156,15 @@ navbarPage(
                  )
                )
            ),
-           br(), br(), br(),
+           br(), br(),
            fluidPage(
              
            h2('Model description'),
                
            # a little space
+           h4('Conceptual design, process schedule and details of the formulation of dynamic simulation models and static functions'),
            br(),
-               
+           
                fluidRow(
                  
                  column(
@@ -172,10 +174,8 @@ navbarPage(
                  
                  column(
                    3,
-                   p('Local water processes (soil water balance of forest stands). ',
-                     'Processes affecting soil water content include rainfall, canopy ',
-                     'interception, infiltration and runoff, percolation and deep ',
-                     'drainage, soil evaporation and plant transpiration.')
+                   p('Simulating soil water balance in a single forest stand ',
+                     'or for multiple stands distributed spatially.')
                  ),
                  
                  
@@ -187,10 +187,9 @@ navbarPage(
                  
                  column(
                    3,
-                   p('Local water processes (soil water balance of forest stands). ',
-                     'Processes affecting soil water content include rainfall, canopy ',
-                     'interception, infiltration and runoff, percolation and deep ',
-                     'drainage, soil evaporation and plant transpiration.')
+                   p('Simulating soil water balance, plant hydraulics ',
+                     'stomatal regulation and photosynthesis, in a',
+                     'single forest stand or for multiple stands.')
                  )
                ),
                
@@ -211,17 +210,32 @@ navbarPage(
                  ),
                  column(
                    2,offset = 1,
-                   downloadButton('hyd_dwn', label = 'Hydraulics')
+                   downloadButton('hyd_dwn', label = 'Hydraulics & Photosynthesis')
                  ),
                  
                  column(
                    3,
-                   p('Hydraulics details of the Sperry et al. (2016) model for canopy water ',
-                     'supply, a cost-benefit approach where hydraulic costs of opening the ',
-                     'stomata are compared against photosynthetic gain.')
+                   p('Details of plant hydraulics, stomatal regulation and',
+                     'photosynthesis processes.')
                  )
-               )
-           )
+              ),
+             br(), br(), br(),
+           
+           fluidRow(
+             
+             column(
+               2, 
+               downloadButton('fire_dwn', label = 'Fire Behaviour')
+             ),
+             
+             column(
+               3,
+               p('Estimate fuel properties and potential fire behaviour',
+                 'in forest stands.')
+             )
+           ),
+           br(), br(), br()
+        )
   ),
   
   # Shiny example app ####

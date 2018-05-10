@@ -263,6 +263,13 @@ function(input, output, session) {
     }
   )
   
+  output$hyd_dwn <- downloadHandler(
+    filename = 'HydraulicsPhotosynthesis.pdf',
+    content = function(file) {
+      file.copy('Docs/HydraulicsPhotosynthesis.pdf', file)
+    }
+  )
+  
   output$growth_dwn <- downloadHandler(
     filename = 'ForestGrowth.pdf',
     content = function(file) {
@@ -270,10 +277,10 @@ function(input, output, session) {
     }
   )
   
-  output$hyd_dwn <- downloadHandler(
-    filename = 'HydraulicsPhotosynthesis.pdf',
+  output$fire_dwn <- downloadHandler(
+    filename = 'FireBehaviour.pdf',
     content = function(file) {
-      file.copy('Docs/HydraulicsPhotosynthesis.pdf', file)
+      file.copy('Docs/FireBehaviour.pdf', file)
     }
   )
   
