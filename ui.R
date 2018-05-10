@@ -116,11 +116,23 @@ navbarPage(
   ),
   
   # Doc and Vignettes ####
-  tabPanel("Documentation", icon = icon('book'),
-           fluidPage(
-             h2('Model vignettes'),
-             br(),
-
+  tabPanel("Installation & documentation", icon = icon('book'),
+          fluidPage(
+            h2('Package installation'),
+            br(),
+            fluidRow(
+               # RMardown document
+               column(
+                 8,
+                 includeMarkdown('Docs/Installation.Rmd')
+               )
+            )
+          ),
+          br(), br(), br(),
+          fluidPage(
+            h2('Model vignettes'),
+            br(),
+            
              fluidRow(
                  
                  #render(system.file("doc/0_PackageOverview.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
