@@ -60,12 +60,12 @@ function(input, output, session) {
     
     control <- defaultControl()
     
-    input_simple <- forest2swbInput(exampleforest, examplesoil, SpParamsMED, control)
+    input_simple <- forest2spwbInput(exampleforest, examplesoil, SpParamsMED, control)
     
     input_simple$above$LAI_live <- c(input$lai_t1, input$lai_s1)
     
     # run the model
-    swb(input_simple, examplesoil, examplemeteo)
+    spwb(input_simple, examplesoil, examplemeteo, elevation = 100)
   })
   
   
@@ -189,7 +189,7 @@ function(input, output, session) {
       theme_medfate()
   })
   
-  output$swb_input <- renderPrint({
+  output$spwb_input <- renderPrint({
     
     # build the input object
     t_1 <- SpParamsMED[as.numeric(input$tree_1) + 1, 'Name']
@@ -220,7 +220,7 @@ function(input, output, session) {
     
     control <- defaultControl()
     
-    input_simple <- forest2swbInput(exampleforest, examplesoil, SpParamsMED, control)
+    input_simple <- forest2spwbInput(exampleforest, examplesoil, SpParamsMED, control)
     
     input_simple$above$LAI_live <- c(input$lai_t1, input$lai_s1)
     
@@ -256,16 +256,16 @@ function(input, output, session) {
   
   # Download helpers (Model description) ####
   output$swb_dwn1 <- downloadHandler(
-    filename = 'SimpleModelSWB.pdf',
+    filename = 'SimpleModelSPWB.pdf',
     content = function(file) {
-      file.copy('Docs/SimpleModelSWB.pdf', file)
+      file.copy('Docs/SimpleModelSPWB.pdf', file)
     }
   )
   
   output$swb_dwn2 <- downloadHandler(
-    filename = 'ComplexModelSWB.pdf',
+    filename = 'ComplexModelSPWB.pdf',
     content = function(file) {
-      file.copy('Docs/ComplexModelSWB.pdf', file)
+      file.copy('Docs/ComplexModelSPWB.pdf', file)
     }
   )
   

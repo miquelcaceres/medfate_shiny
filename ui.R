@@ -335,8 +335,8 @@ navbarPage(
         ),
         column(
           8,
-          h4('swbInput object'),
-          verbatimTextOutput('swb_input')
+          h4('spwbInput object'),
+          verbatimTextOutput('spwb_input')
         )
       )
     )
