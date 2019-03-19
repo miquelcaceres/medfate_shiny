@@ -125,7 +125,7 @@ function(input, output, session) {
     examplesoil$clay <- rep(soil_texture[1], 2)
     
     Theta_FC = soil.thetaFC(examplesoil)
-    swc_data <- as.data.frame(get_res()[['SoilWaterBalance']][,1:2]) %>%
+    swc_data <- as.data.frame(get_res()[['Soil']][,1:2]) %>%
       mutate(Date = as.Date(row.names(.)),
              Shallow = W.1 * Theta_FC[1],
              Deep = W.2 * Theta_FC[2]) %>%
@@ -230,27 +230,27 @@ function(input, output, session) {
   
   # Download helpers (Vignettes) ####
   output$pck_vig_dwn1 <- downloadHandler(
-    filename = '0_PackageOverview.html',
+    filename = 'PackageOverview.html',
     content = function(file) {
-      file.copy("Docs/0_PackageOverview.html",file)
+      file.copy("Docs/PackageOverview.html",file)
     }
   )
   output$swb_vig_dwn1 <- downloadHandler(
-    filename = '1_SimpleWaterBalance.html',
+    filename = 'SimpleWaterBalance.html',
     content = function(file) {
-      file.copy("Docs/1_SimpleWaterBalance.html",file)
+      file.copy("Docs/SimpleWaterBalance.html",file)
     }
   )
   output$swb_vig_dwn2 <- downloadHandler(
-    filename = '2_ComplexWaterBalance.html',
+    filename = 'ComplexWaterBalance.html',
     content = function(file) {
-      file.copy("Docs/2_ComplexWaterBalance.html",file)
+      file.copy("Docs/ComplexWaterBalance.html",file)
     }
   )
   output$growth_vig_dwn2 <- downloadHandler(
-    filename = '3_ForestGrowth.html',
+    filename = 'ForestGrowth.html',
     content = function(file) {
-      file.copy("Docs/3_ForestGrowth.html",file)
+      file.copy("Docs/ForestGrowth.html",file)
     }
   )
   

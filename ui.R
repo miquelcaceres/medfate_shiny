@@ -136,25 +136,25 @@ navbarPage(
             
              fluidRow(
                  
-                 #render(system.file("doc/0_PackageOverview.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 #render(system.file("doc/PackageOverview.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
                  column(
                    2,
                    downloadButton('pck_vig_dwn1', label = 'Package overview')
                  ),
                  
                  
-                 #render(system.file("doc/1_SimpleWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 #render(system.file("doc/SimpleWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
                  column(
                    2, 
                    downloadButton('swb_vig_dwn1', label = 'Simple Water Balance')
                  ),
                  
-                 #render(system.file("doc/2_ComplexWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 #render(system.file("doc/ComplexWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
                  column(
                    2, 
                    downloadButton('swb_vig_dwn2', label = 'Complex Water Balance')
                  ),
-                 #render(system.file("doc/3_ForestGrowth.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
+                 #render(system.file("doc/ForestGrowth.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
                  column(
                    2, 
                    downloadButton('growth_vig_dwn2', label = 'Forest Growth')
@@ -275,8 +275,8 @@ navbarPage(
               choices = c(
                 'Pinus sylvestris' = 59,
                 'Pinus halepensis' = 54,
-                'Quercus ilex' = 67,
-                'Quercus pubescens' = 69,
+                'Quercus humilis' = 67,
+                'Quercus ilex' = 68,
                 'Fagus sylvatica' = 37,
                 'Arbutus unedo' = 6
               ),

@@ -2,7 +2,7 @@
 title: "Package installation"
 output: html_document
 ---
-Package `medfate` can be found at [CRAN](https://cran.r-project.org/), but the version in this repository is very old. We recommend users to download and install the latest stable versions GitHub as follows:
+Package `medfate` can be found at [CRAN](https://cran.r-project.org/), where we update versions every few months. Users can also download and install the latest stable versions GitHub as follows:
 
 `devtools::install_github("miquelcaceres/medfate")`
 
