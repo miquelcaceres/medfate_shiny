@@ -162,9 +162,9 @@ function(input, output, session) {
   output$evap_plot <- renderPlot({
     
     # evap plot
-    as.data.frame(get_res()[['DailyBalance']]) %>%
+    as.data.frame(get_res()[['WaterBalance']]) %>%
       mutate(Date = as.Date(row.names(.))) %>%
-      select(Date, Etot, Esoil, Eplanttot) %>%
+      select(Date, Evapotranspiration, SoilEvaporation, PlantExtraction) %>%
       gather(Origin, Evaporation, -Date) %>%
       ggplot(aes(x = Date, y = Evaporation, colour = Origin)) +
       geom_line(size = 1.5, alpha = 0.5) +
@@ -177,7 +177,7 @@ function(input, output, session) {
   output$watexp_plot <- renderPlot({
     
     # water export plot
-    as.data.frame(get_res()[['DailyBalance']]) %>%
+    as.data.frame(get_res()[['WaterBalance']]) %>%
       mutate(Date = as.Date(row.names(.))) %>%
       select(Date, Runoff, DeepDrainage) %>%
       # mutate(Total = Runoff + DeepDrainage) %>%
