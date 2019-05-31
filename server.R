@@ -124,7 +124,7 @@ function(input, output, session) {
     examplesoil$sand <- rep(soil_texture[2], 2)
     examplesoil$clay <- rep(soil_texture[1], 2)
     
-    Theta_FC = soil.thetaFC(examplesoil)
+    Theta_FC = soil_thetaFC(examplesoil)
     swc_data <- as.data.frame(get_res()[['Soil']][,1:2]) %>%
       mutate(Date = as.Date(row.names(.)),
              Shallow = W.1 * Theta_FC[1],

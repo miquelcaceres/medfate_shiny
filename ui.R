@@ -130,116 +130,17 @@ navbarPage(
           ),
           br(), br(), 
           fluidPage(
-            h2('Package vignettes'),
-            h4('Tutorials explaining the main functions of the package and how to run simulations'),
+            h2('Package documentation'),
             br(),
-            
-             fluidRow(
-                 
-                 #render(system.file("doc/PackageOverview.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
-                 column(
-                   2,
-                   downloadButton('pck_vig_dwn1', label = 'Package overview')
-                 ),
-                 
-                 
-                 #render(system.file("doc/SimpleWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
-                 column(
-                   2, 
-                   downloadButton('swb_vig_dwn1', label = 'Simple Water Balance')
-                 ),
-                 
-                 #render(system.file("doc/ComplexWaterBalance.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
-                 column(
-                   2, 
-                   downloadButton('swb_vig_dwn2', label = 'Complex Water Balance')
-                 ),
-                 #render(system.file("doc/ForestGrowth.Rmd", package = "medfate"), html_document(toc = TRUE), output_dir = "Docs/")
-                 column(
-                   2, 
-                   downloadButton('growth_vig_dwn2', label = 'Forest Growth')
-                 )
-             )
-           ),
-           br(), br(),
-           fluidPage(
-             
-           h2('Model description'),
-               
-           # a little space
-           h4('Conceptual design, process schedule and details of the formulation of dynamic simulation models and static functions'),
-           br(),
-           
-               fluidRow(
-                 
-                 column(
-                   2,
-                   downloadButton('swb_dwn1', label = 'Simple Water Balance')
-                 ),
-                 
-                 column(
-                   3,
-                   p('Simulating soil water balance in a single forest stand ',
-                     'or for multiple stands distributed spatially.')
-                 ),
-                 
-                 
-                 
-                 column(
-                   2, offset = 1,
-                   downloadButton('swb_dwn2', label = 'Complex Water Balance')
-                 ),
-                 
-                 column(
-                   3,
-                   p('Simulating soil water balance, plant hydraulics ',
-                     'stomatal regulation and photosynthesis, in a',
-                     'single forest stand or for multiple stands.')
-                 )
-               ),
-               
-               br(), 
-               
-               fluidRow(
-                 
-                 column(
-                   2, 
-                   downloadButton('growth_dwn', label = 'Forest Growth')
-                 ),
-                 
-                 column(
-                   3,
-                   p('Simulating plant growth of a set of cohorts (competing for light ',
-                     'and water) in a single forest stand or for multiple stands.')
-                 ),
-                 column(
-                   2,offset = 1,
-                   downloadButton('hyd_dwn', label = 'Hydraulics & Photosynthesis')
-                 ),
-                 
-                 column(
-                   3,
-                   p('Details of plant hydraulics, stomatal regulation and',
-                     'photosynthesis processes.')
-                 )
-              ),
-             br(),
-           
-           fluidRow(
-             
-             column(
-               2, 
-               downloadButton('fire_dwn', label = 'Fire Behaviour')
-             ),
-             
-             column(
-               3,
-               p('Estimate fuel properties and potential fire behaviour',
-                 'in forest stands.')
-             )
-           ),
-           br(), br(), br()
-        )
+            fluidRow(
+              # RMardown document
+              column(
+                8,
+                includeMarkdown('Docs/Documentation.Rmd')
+              )
+            )
+          )
+        
   ),
   
   # Shiny example app ####
