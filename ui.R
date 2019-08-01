@@ -71,7 +71,7 @@ navbarPage(
           strong('medfate'), 'R package to simulate forest water balance. '),
         p(style = 'margin: 10px 30px 10px 30px; font-size:16px',
           'See package documentation at',
-          a(href='https://vegmod.github.io/rpackage/medfate/', 'our website')),
+          a(href='https://vegmod.ctfc.cat/software/medfate/', 'our website')),
         br()
       ),
       
