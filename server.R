@@ -159,6 +159,7 @@ function(input, output, session) {
       theme_medfate()
   })
   
+  
   output$evap_plot <- renderPlot({
     
     # evap plot
