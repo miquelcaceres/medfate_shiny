@@ -3,7 +3,6 @@
 # libraries
 library(shiny)
 library(medfate)
-# library(MedfateValidation)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
